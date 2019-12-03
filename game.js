@@ -14,6 +14,8 @@ var beginWave = true;
 var bgMusicPlaying = false;
 // Steven End
 
+// Kyle Organized variables 
+
 /*
     Create game scene variables
 */
@@ -292,6 +294,7 @@ function setup()
 
     let instructions_text = new PIXI.Text(
         'Move your character by using a, s, d, and w \nto avoid the oncoming wave of enemies\n\n' +
+        'Press l to shoot bullets at the enemy\n\n' +  
         'If you touch an oncoming enemy, you will lose a life\n\n' +
         'After 3 lost lives, you will die\n\n' +
         'Occasionally items will drop. \nPress i to view your inventory to use these items\n\n' +
@@ -804,10 +807,13 @@ function setUpSceneOne_Male()
     bg = new PIXI.Sprite(PIXI.Texture.from("Sprites/Backgrounds/Background_Level1_1.png"));
     gameScene_1.addChild(bg);
 
+    // Kyle Start 
     deathCountText = new PIXI.Text("Zombies Killed: " + deathCount + " / 100", deathCountStyle);
     deathCountText.position.x = 450;
 
     gameScene_1.addChild(deathCountText);
+
+    // Kyle End 
 
     // adding hearts to game
     heart_count = 3;
@@ -1048,12 +1054,15 @@ function heal()
 
 function takeDamage()
 {
+    // Kyle Start 
     hit = true;
+    // Kyle End 
 
     heart_count -= 1;
 
     switch(heart_count)
     {
+        // Kyle Helped 
         case 5:
             heart_6.visible = false;
             break;
@@ -1079,8 +1088,8 @@ function takeDamage()
     }
 }
 
-// Steven Start
 
+// Kyle Start 
 // Attack and kill function
 function attack()
 {
@@ -1101,6 +1110,10 @@ function updateDeath()
     deathCount += 1;
     deathCountText.text = "Zombies Killed: " + deathCount + " / 100";
 }
+
+//Kyle End 
+
+// Steven Start
 
 // Resets the death count
 function resetDeathCount()
@@ -1400,12 +1413,12 @@ function animate()
                 // move the enemy right
                 moveZombies(zombies[index]);
 
+                // Kyle start
                 for (index = 0; index < zombies.length; index++)
                 {
                     // move the enemy right
                     moveZombies(zombies[index]);
 
-                    // UNCOMMENT THIS FOR COLLISION (AND LAG) (Currently shows collisions in times where it shouldn't)
                     if(collisionDetection(player, zombies[index]))
                     {
                         if(zombies[index].visible)
@@ -1433,6 +1446,8 @@ function animate()
                     }
                 }
 
+                // Kyle End 
+
                 // Steven Start
 
                 for (bIndex = 0; bIndex < bullets.length; bIndex++)
@@ -1446,7 +1461,7 @@ function animate()
                                 zombies[i].visible = false;
                                 // gameScene_1.removeChild(zombies[i]);
                                 bullets[bIndex].visible = false;
-
+                                updateDeath();
                                 deathCount ++;
                                 deathSound.play();
                             }
@@ -1549,11 +1564,13 @@ function keydownHandler(e)
     }
     // Steven End
 
+    // Kyle Start 
     else if ( e.keyCode == 74) // J // ATTACK
     {
         attack();
     }
 
+    // Kyle End 
     else if (e.keyCode == 73) // I //INVENTORY
     {
         inventoryPage = true;
