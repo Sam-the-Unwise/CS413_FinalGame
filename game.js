@@ -59,7 +59,8 @@ var start_button, instruction_button, credits_button,
     quit_game_over_button, quit_instructions_button;
 
 var title_text, male, female, female_character_choice, male_character_choice, character_r, character_l, 
-    heart_1, heart_2, heart_3, heart_4, heart_5, heart_6, heart_count, max_hearts;
+    heart_1, heart_2, heart_3, heart_4, heart_5, heart_6, heart_count, max_hearts,
+    heart_1_black, heart_2_black, heart_3_black, heart_4_black, heart_5_black, heart_6_black;
 
 /*
     Create end variables 
@@ -570,7 +571,7 @@ function setup()
     creditScene.addChild(credits);
 
     let credits_text = new PIXI.Text(
-        'Samantha Muellner -- Art/Level Design and Coding\n\nJacob Kaufman -- Coding\n\nKyle Watson -- GitHub owner and Coding\n\nSteven Enriquez -- Coding',
+        'Samantha Muellner -- Art/Level Design and Coding\n\nJacob Kaufman -- Coding\n\nKyle Watson -- GitHub owner and Coding\n\nSteven Enriquez -- Sound and Coding',
         {fontFamily : "\"Courier New\", Courier, monospace",
             fontSize: 22,
             fontWeight: "bold",
@@ -692,6 +693,12 @@ function setUpSceneOne_Female()
     max_hearts = 3;
     setUpHearts(gameScene_1);
 
+    heart_1_black.visible = true;
+    heart_2_black.visible = true;
+    heart_3_black.visible = true;
+    heart_4_black.visible = false;
+    heart_5_black.visible = false;
+    heart_6_black.visible = false;
     heart_1.visible = true;
     heart_2.visible = true;
     heart_3.visible = true;
@@ -791,6 +798,12 @@ function setUpSceneOne_Male()
     max_hearts = 3;
     setUpHearts(gameScene_1);
 
+    heart_1_black.visible = true;
+    heart_2_black.visible = true;
+    heart_3_black.visible = true;
+    heart_4_black.visible = false;
+    heart_5_black.visible = false;
+    heart_6_black.visible = false;
     heart_1.visible = true;
     heart_2.visible = true;
     heart_3.visible = true;
@@ -1046,151 +1059,112 @@ function setUpSceneFour()
 // add the appropriate amount of hearts to the game
 function setUpHearts(currentScene)
 {
-    /***************** HEART 1 ********************/
+    // set up black hearts
+    heart_1_black = new PIXI.Sprite(PIXI.Texture.from("Sprites/Items/Black_Heart.png"));
+    heart_1_black.position.x = 20;
+    heart_1_black.position.y = 20;
+    heart_1_black.anchor.x = .5;
+    heart_1_black.anchor.y = .5;
+    currentScene.addChild(heart_1_black);
+
+    heart_2_black = new PIXI.Sprite(PIXI.Texture.from("Sprites/Items/Black_Heart.png"));
+    heart_2_black.position.x = heart_1_black.position.x + 30;
+    heart_2_black.position.y = 20;
+    heart_2_black.anchor.x = .5;
+    heart_2_black.anchor.y = .5;
+    currentScene.addChild(heart_2_black);
+
+    heart_3_black = new PIXI.Sprite(PIXI.Texture.from("Sprites/Items/Black_Heart.png"));
+    heart_3_black.position.x = heart_2_black.position.x + 30;
+    heart_3_black.position.y = 20;
+    heart_3_black.anchor.x = .5;
+    heart_3_black.anchor.y = .5;
+    currentScene.addChild(heart_3_black);
+
+    heart_4_black = new PIXI.Sprite(PIXI.Texture.from("Sprites/Items/Black_Heart.png"));
+    heart_4_black.position.x = heart_3_black.position.x + 30;
+    heart_4_black.position.y = 20;
+    heart_4_black.anchor.x = .5;
+    heart_4_black.anchor.y = .5;
+    currentScene.addChild(heart_4_black);
+
+    heart_5_black = new PIXI.Sprite(PIXI.Texture.from("Sprites/Items/Black_Heart.png"));
+    heart_5_black.position.x = heart_4_black.position.x + 30;
+    heart_5_black.position.y = 20;
+    heart_5_black.anchor.x = .5;
+    heart_5_black.anchor.y = .5;
+    currentScene.addChild(heart_5_black);
+
+    heart_6_black = new PIXI.Sprite(PIXI.Texture.from("Sprites/Items/Black_Heart.png"));
+    heart_6_black.position.x = heart_5_black.position.x + 30;
+    heart_6_black.position.y = 20;
+    heart_6_black.anchor.x = .5;
+    heart_6_black.anchor.y = .5;
+    currentScene.addChild(heart_6_black);
+
+
+    // add red hearts
 
     heart_1 = new PIXI.Sprite(PIXI.Texture.from("Sprites/Items/Heart.png"));
     heart_1.position.x = 20;
     heart_1.position.y = 20;
     heart_1.anchor.x = .5;
     heart_1.anchor.y = .5;
-
-
     currentScene.addChild(heart_1);
 
-
-    /***************** HEART 2 ********************/
-
-    // check whether or not to make the heart black
-    if(max_hearts > 1)
-    {
-        heart_2 = new PIXI.Sprite(PIXI.Texture.from("Sprites/Items/Heart.png"));
-
-    }
-    else
-    {
-        heart_2 = new PIXI.Sprite(PIXI.Texture.from("Sprites/Items/Black_Heart.png"))
-    }
-
+    heart_2 = new PIXI.Sprite(PIXI.Texture.from("Sprites/Items/Heart.png"));
     heart_2.position.x = heart_1.position.x + 30;
     heart_2.position.y = 20;
     heart_2.anchor.x = .5;
     heart_2.anchor.y = .5;
-
     currentScene.addChild(heart_2);
 
-
-    /***************** HEART 3 ********************/
-
-    // check whether or not to make the heart black
-    if(max_hearts > 2)
-    {
-        heart_3 = new PIXI.Sprite(PIXI.Texture.from("Sprites/Items/Heart.png"));
-
-    }
-    else
-    {
-        heart_3 = new PIXI.Sprite(PIXI.Texture.from("Sprites/Items/Black_Heart.png"))
-    }
-
+    heart_3 = new PIXI.Sprite(PIXI.Texture.from("Sprites/Items/Heart.png"));
     heart_3.position.x = heart_2.position.x + 30;
     heart_3.position.y = 20;
     heart_3.anchor.x = .5;
     heart_3.anchor.y = .5;
-
-
     currentScene.addChild(heart_3);
 
-
-    /***************** HEART 4 ********************/
-
-    // check whether or not to make the heart black
-    if(max_hearts > 3)
-    {
-        heart_4 = new PIXI.Sprite(PIXI.Texture.from("Sprites/Items/Heart.png"));
-
-    }
-    else
-    {
-        heart_4 = new PIXI.Sprite(PIXI.Texture.from("Sprites/Items/Black_Heart.png"))
-    }
-
+    heart_4 = new PIXI.Sprite(PIXI.Texture.from("Sprites/Items/Heart.png"));
     heart_4.position.x = heart_3.position.x + 30;
     heart_4.position.y = 20;
     heart_4.anchor.x = .5;
     heart_4.anchor.y = .5;
-
-
     currentScene.addChild(heart_4);
 
-
-    /***************** HEART 5 ********************/
-
-    // check whether or not to make the heart black
-    if(max_hearts > 4)
-    {
-        heart_5 = new PIXI.Sprite(PIXI.Texture.from("Sprites/Items/Heart.png"));
-
-    }
-    else
-    {
-        heart_5 = new PIXI.Sprite(PIXI.Texture.from("Sprites/Items/Black_Heart.png"))
-    }
-
+    heart_5 = new PIXI.Sprite(PIXI.Texture.from("Sprites/Items/Heart.png"));
     heart_5.position.x = heart_4.position.x + 30;
     heart_5.position.y = 20;
     heart_5.anchor.x = .5;
     heart_5.anchor.y = .5;
-
     currentScene.addChild(heart_5);
 
-
-    /***************** HEART 6 ********************/
-
-    if(max_hearts > 5)
-    {
-        heart_6 = new PIXI.Sprite(PIXI.Texture.from("Sprites/Items/Heart.png"));
-
-    }
-    else
-    {
-        heart_6 = new PIXI.Sprite(PIXI.Texture.from("Sprites/Items/Black_Heart.png"))
-    }
-
+    heart_6 = new PIXI.Sprite(PIXI.Texture.from("Sprites/Items/Heart.png"));
     heart_6.position.x = heart_5.position.x + 30;
     heart_6.position.y = 20;
     heart_6.anchor.x = .5;
     heart_6.anchor.y = .5;
-
-    if(max_hearts > 5)
-    {
-        heart_6.visible = true;
-    }
-
     currentScene.addChild(heart_6);
 }
 
 // will add a heart to the total count when the player chooses to upgrade their health
 function addHeart()
 {
-    heart_count ++;
     max_hearts ++;
 
     // if there is a 5th heart, add a 6th one
-    switch(heart_count){
+    switch(max_hearts){
         case 6:
-            heart_6.visible = true;
+            heart_6_black.visible = true;
             break;
+
         case 5:
-            heart_5.visible = true;
+            heart_5_black.visible = true;
             break;
-        case 4:
-            heart_4.visible = true;
-            break;
-        case 3:
-            heart_3.visible = true;
-            break;
-        default: // there was only one heart left, and so now there will be 2
-            heart_2.visible = true;
+
+        default: // already had three hearts
+            heart_4_black.visible = true;
             break;
     }
 
@@ -1202,26 +1176,27 @@ function heal()
 {
     heart_count ++;
 
-    switch(heart_count){
+    switch(heart_count)
+    {
         case 6:
-            heart_6 = new PIXI.Sprite(PIXI.Texture.from("Sprites/Items/Heart.png"));
-            current_game_scene.heart_6 = heart_6;
+            heart_6.visible = true;
+            break;
 
         case 5:
-            heart_5 = new PIXI.Sprite(PIXI.Texture.from("Sprites/Items/Heart.png"));
-            current_game_scene.heart_5 = heart_5;
+            heart_5.visible = true;
+            break;
 
         case 4:
-            heart_4 = new PIXI.Sprite(PIXI.Texture.from("Sprites/Items/Heart.png"));
-            current_game_scene.heart_4 = heart_4;
+            heart_4.visible = true;
+            break;
 
         case 3:
-            heart_3 = new PIXI.Sprite(PIXI.Texture.from("Sprites/Items/Heart.png"));
-            current_game_scene.heart_3 = heart_3;
+            heart_3.visible = true;
+            break;
 
-        default:
-            heart_2 = new PIXI.Sprite(PIXI.Texture.from("Sprites/Items/Heart.png"));
-            current_game_scene.heart_2 = heart_2;
+        default: // 2
+            heart_2.visible = true;
+            break;
     }
 }
 
@@ -1229,17 +1204,28 @@ function takeDamage()
 {
     hit = true; 
  
-    console.log("Inside takeDamage: " + hit);
     heart_count -= 1;
     
     switch(heart_count)
     {
+        case 5:
+            heart_6.visible = false;
+            break; 
+
+        case 4:
+            heart_5.visible = false;
+            break;
+
+        case 3:
+            heart_4.visible = false;
+            break;
+
         case 2:
-            heart_3.visible = false; 
+            heart_3.visible = false;
             break;
 
         case 1:
-            heart_2.visible = false;  
+            heart_2.visible = false;
             break; 
             
         default: // lost last heart
@@ -1247,10 +1233,12 @@ function takeDamage()
     }
 }
 
+// Steven Start
+
 // Attack and kill function 
 function attack()
 {
-    console.log("Attack!");
+    //console.log("Attack!");
     for (index = 0; index < zombies.length; index++)
     {
         if(collisionDetection(player, zombies[index]))
@@ -1262,15 +1250,15 @@ function attack()
 }
 
 // Updates the number of zombies killed. 
-function updateDeath() {
+function updateDeath() 
+{
     deathCount += 1;
     deathCountText.text = "Zombies Killed: " + deathCount + " / 100";
-    
-  }
+}
 
-// Steven Start
 // Resets the death count
-function resetDeathCount() {
+function resetDeathCount() 
+{
     deathCount = 0;
     deathCountText.text = "Zombies Killed: " + deathCount + " / 100";
 }
@@ -1299,16 +1287,18 @@ function quit()
     // if quit, show game over scene and get ride of game scene
     gameOverScene.interactive = true;
     gameOverScene.visible = true;
+
     // Steven Start
     bgMusic.stop();
-    // Steven End
     bgMusicPlaying = false;
+    // Steven End
 
     deathCountText.text = "Zombies Killed: " + deathCount + " / 100";
     gameOverScene.addChild(deathCountText)
 
     gameScene_1.visible = false;
     gameScene_1.interactive = false;
+    current_game_scene.destroy({children:true, texture:true, baseTexture:true});
     // gameScene_2.visible = false;
     // gameScene_2.interactive = false;
     // gameScene_3.visible = false;
@@ -1358,15 +1348,17 @@ function quit_gameover()
     gameOverScene.visible = false;
     openingScene.interactive = true;
     openingScene.visible = true;
-    
 
+    current_game_scene.destroy({children:true, texture:true, baseTexture:true});
+    
     renderer.render(openingScene);
 }
 
 // Steven Start
 // Function: collisionDetection(first, second)
 // Desc: Detects when two sprites collide.
-function collisionDetection(first, second) {
+function collisionDetection(first, second) 
+{
     var firstBounds = first.getBounds();
     var secondBounds = second.getBounds();
   
@@ -1383,8 +1375,6 @@ function finished()
 }
 
 /***************** Sams Code End *****************/
-
-
 
 
 
@@ -1421,11 +1411,8 @@ function spawnZombies()
     }
 }
 
-
-
 function startWave ()
 {
-
     if(!bgMusicPlaying) {
         bgMusic.play();
         bgMusicPlaying = true;
@@ -1447,21 +1434,26 @@ function startWave ()
 
 function moveZombies( zombie )
 {
-    if(zombie.position.x < player.position.x) {
+    if(zombie.position.x < player.position.x) 
+    {
         zombie.position.x = zombie.position.x + 1 * zombieSpeed;
-      }
-      // move the enemy left
-      else if(zombie.position.x > player.position.x) {
+    }
+    // move the enemy left
+    else if(zombie.position.x > player.position.x) 
+    {
         zombie.position.x = zombie.position.x - 1 * zombieSpeed;
-      }
-      // move the enemy down
-      if(zombie.position.y < player.position.y) {
+    }
+    
+    // move the enemy down
+    if(zombie.position.y < player.position.y) 
+    {
         zombie.position.y = zombie.position.y + 1 * zombieSpeed;
-      }
-      // move the enemy up
-      else if(zombie.position.y > player.position.y) {
+    }
+    // move the enemy up
+    else if(zombie.position.y > player.position.y) 
+    {
         zombie.position.y = zombie.position.y - 1 * zombieSpeed;
-      }
+    }
 }
 
 /***************** Jacobs Code End *****************/
@@ -1505,10 +1497,27 @@ function animate()
     {
         current_game_scene = gameScene_1;
 
-        for(var b=bullets.length-1;b>=0;b--){
-            bullets[b].position.x += 10+Math.cos(5)*10;
-            bullets[b].position.y += 10+Math.sin(5)*10;
-          }
+        var b = 0;
+
+        if(player == character_r)
+        {
+            for(b = bullets.length - 1; b >= 0 ; b--)
+            {
+                bullets[b].position.x += 10 + Math.cos(5)*10;
+                bullets[b].position.y += 10 + Math.sin(5)*10;
+            }
+        }
+
+        else
+        {
+            for(b = bullets.length - 1; b >= 0 ; b--)
+            {
+                bullets[b].position.x -= 10 + Math.cos(5)*10;
+                bullets[b].position.y -= 10 + Math.sin(5)*10;
+            }
+        }
+
+        
         
         currentDate = new Date();
         
@@ -1567,6 +1576,7 @@ function animate()
                         {
                             takeDamage();
                         }
+
                         else
                         {
     
@@ -1575,7 +1585,7 @@ function animate()
                         
                                 currentTime = currentDate.getSeconds();
                         
-                                if((startTime-currentTime) % 4 == 0)
+                                if((startTime - currentTime) % 4 == 0)
                                 {
                                    hit = false;                             
                                 }
@@ -1583,15 +1593,25 @@ function animate()
                         }
                     }
                 }
+                
                 // Steven Start
-                for (bIndex = 0; bIndex < bullets.length; bIndex++) {
-                    if(bullets.length > 0) {
-                        if(collisionDetection(bullets[bIndex], zombies[index-1])) {
-                            gameScene_1.removeChild(zombies[index-1]);
-                            gameScene_1.removeChild(bullets[bIndex]);
-                            deathCount++;
-                            deathSound.play();
+
+                for (bIndex = 0; bIndex < bullets.length; bIndex++) 
+                {
+                    if(bullets.length > 0) 
+                    {
+                        for(var i = deathCount; i < index - 1; i ++)
+                        {
+                            if(collisionDetection(bullets[bIndex], zombies[i])) 
+                            {
+                                gameScene_1.removeChild(zombies[i]);
+                                gameScene_1.removeChild(bullets[bIndex]);
+
+                                deathCount ++;
+                                deathSound.play();
+                            }
                         }
+                        
                     }
                 }
                 // Steven End
@@ -1813,7 +1833,6 @@ function keydownHandler(e)
         
         
     }
-<<<<<<< HEAD
 
     // Steven Start
     else if (e.keyCode == 76) //L //SHOOT
@@ -1822,12 +1841,11 @@ function keydownHandler(e)
     }
     // Steven End
 
-=======
->>>>>>> 71fa0a798c347dc7b06c7550676d24957a2aee86
     else if ( e.keyCode == 74) // J // ATTACK 
     {
         attack();
     }
+
     else if (e.keyCode == 73) // I //INVENTORY 
     {
         inventoryPage = true;
@@ -1863,13 +1881,14 @@ var bullets = [];
 function fireBullet(playerX, playerY) 
 {
     var bullet = new PIXI.Sprite(PIXI.Texture.from("Sprites/Items/Bullet.png"));
-    
+
     bullet.position.x = playerX;
     bullet.position.y = playerY;
     
     gameScene_1.addChild(bullet);
     
     bullets.push(bullet);
+    
     shootSound.play();
 }
 // Steven End
