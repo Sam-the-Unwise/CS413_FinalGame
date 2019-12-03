@@ -1144,7 +1144,7 @@ function quit()
 
     gameScene_1.visible = false;
     gameScene_1.interactive = false;
-    current_game_scene.destroy({children:true, texture:true, baseTexture:true});
+    
     // gameScene_2.visible = false;
     // gameScene_2.interactive = false;
     // gameScene_3.visible = false;
@@ -1195,8 +1195,7 @@ function quit_gameover()
     openingScene.interactive = true;
     openingScene.visible = true;
 
-    current_game_scene.destroy({children:true, texture:true, baseTexture:true});
-
+    
     renderer.render(openingScene);
 }
 
@@ -1409,25 +1408,28 @@ function animate()
                     // UNCOMMENT THIS FOR COLLISION (AND LAG) (Currently shows collisions in times where it shouldn't)
                     if(collisionDetection(player, zombies[index]))
                     {
-                        if( !hit )
+                        if(zombies[index].visible)
                         {
-                            takeDamage();
-                        }
+                            if( !hit )
+                            {
+                                takeDamage();
+                            }
 
-                        else
-                        {
-
-                            if (currentDate.getSeconds() != currentTime)
+                            else
                             {
 
-                                currentTime = currentDate.getSeconds();
-
-                                if((startTime - currentTime) % 4 == 0)
+                                if (currentDate.getSeconds() != currentTime)
                                 {
-                                   hit = false;
+                                    currentTime = currentDate.getSeconds();
+
+                                    if((startTime - currentTime) % 4 == 0)
+                                    {
+                                    hit = false;
+                                    }
                                 }
                             }
                         }
+                        
                     }
                 }
 
@@ -1437,12 +1439,13 @@ function animate()
                 {
                     if(bullets.length > 0)
                     {
-                        for(var i = deathCount; i < index - 1; i ++)
+                        for(var i = deathCount; i < index; i ++)
                         {
-                            if(collisionDetection(bullets[bIndex], zombies[i]))
+                            if(collisionDetection(bullets[bIndex], zombies[i]) && bullets[bIndex].visible && zombie[i].visible)
                             {
-                                gameScene_1.removeChild(zombies[i]);
-                                gameScene_1.removeChild(bullets[bIndex]);
+                                zombies[i].visible = false;
+                                // gameScene_1.removeChild(zombies[i]);
+                                bullets[bIndex].visible = false;
 
                                 deathCount ++;
                                 deathSound.play();
